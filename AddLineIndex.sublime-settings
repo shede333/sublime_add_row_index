@@ -1,0 +1,12 @@
+{
+	// if start_number=0, show: 0, 1, 2, 3, 4
+	// if start_number=2, show: 2, 3, 4, 5, 6
+	"add_line_index_start_num": 1,
+
+	// if step =1, so use 0, 1, 2, 3, 4 ....
+	// if step =2, so use 0, 2, 4, 6, 8 ....
+	"add_line_index_step": 1,
+
+	// 自动检测选择的第一行的行首，是否有数字，有的话，使用此数字作为 add_line_index_start_num
+	"add_line_index_is_check_first_num": true
+}

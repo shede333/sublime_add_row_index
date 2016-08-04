@@ -1,0 +1,3 @@
+[
+	{ "keys": ["super+ctrl+x"], "command": "add_line_index" }
+]
