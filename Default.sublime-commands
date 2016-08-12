@@ -1,6 +1,16 @@
 [
     {
-        "caption": "AddLineIndex: add line index",
+        "caption": "AddLineIndex: add line index, 0,1,2,3",
         "command": "add_line_index"
+    },
+    {
+        "caption": "AddLineIndex: add line index，1,2,3,4",
+        "command": "add_line_index",
+        "args": {"first_number": 1}
+    },  
+    {
+        "caption": "AddLineIndexWithPopup: add line index with popup menu",
+        "command": "add_line_index_with_popup"
     }
+
 ]
