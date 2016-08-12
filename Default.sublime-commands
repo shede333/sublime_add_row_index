@@ -1,12 +1,22 @@
 [
     {
-        "caption": "AddRowIndex: add row index, 0,1,2,3",
+        "caption": "AddRowIndex: add row index, 0,1,2,3...",
         "command": "add_row_index"
     },
     {
-        "caption": "AddRowIndex: add row index，1,2,3,4",
+        "caption": "AddRowIndex: add row index，1,2,3,4...",
         "command": "add_row_index",
         "args": {"first_number": 1}
+    },
+    {
+        "caption": "AddRowIndex: add row index，a,b,c,d...",
+        "command": "add_row_index_with_letter",
+        "args": {"first_letter": "a", "max_letter": "z"}
+    },
+    {
+        "caption": "AddRowIndex: add row index，A,B,C,D...",
+        "command": "add_row_index_with_letter",
+        "args": {"first_letter": "A", "max_letter": "Z"}
     },  
     {
         "caption": "AddRowIndexWithPopup: add row index with popup menu",

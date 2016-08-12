@@ -29,10 +29,12 @@ def insert_digit_index(view=None, edit=None, row_num_list=[], first_number=0, in
         first_number += index_step
 
 
-def insert_letter_index(row_num_list, first_letter, max_letter):
+def insert_letter_index(view=None, edit=None, row_num_list=[], first_letter="a", max_letter="z"):
     # start insert letter in beginning of line
+    view = g_view if view == None else view
+    edit = g_edit if edit == None else edit
     for tmp_row in row_num_list:
-        g_view.insert(g_edit, g_view.text_point(tmp_row, 0), first_letter)
+        view.insert(edit, view.text_point(tmp_row, 0), first_letter)
         if first_letter < max_letter:
             first_letter = chr(ord(first_letter) + 1)
         else:
@@ -52,10 +54,10 @@ def handle_user_popup_select(selected_index):
         insert_digit_index(row_num_list=get_selected_rows(), first_number=first_number, index_step=index_step)
     elif selected_index == 2:
         # inset lower letter
-        insert_letter_index(get_selected_rows(), "a", "z")
+        insert_letter_index(row_num_list=get_selected_rows(), first_letter="a", max_letter="z")
     elif selected_index == 3:
         # insert upper letter
-        insert_letter_index(get_selected_rows(), "A", "Z")
+        insert_letter_index(row_num_list=get_selected_rows(), first_letter="A", max_letter="Z")
     
     
 class AddRowIndex(sublime_plugin.TextCommand):
@@ -89,7 +91,12 @@ class AddRowIndexCommand(AddRowIndex):
                 first_number = int(result.group(0)) + index_step
                 row_num_arr.pop(0)
         insert_digit_index(view, edit, row_num_arr, first_number, index_step)
-        
+
+
+class AddRowIndexWithLetterCommand(AddRowIndex):
+    def run(self, edit, first_letter="a", max_letter="z"):
+        insert_letter_index(self.view, edit, get_selected_rows(self.view), first_letter, max_letter)
+      
 
 class AddRowIndexWithPopupCommand(AddRowIndex):
     def run(self, edit):
