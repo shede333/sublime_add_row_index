@@ -1,4 +1,4 @@
 [
-	{ "keys": ["super+ctrl+x"], "command": "add_line_index" },
-    { "keys": ["super+ctrl+shift+x"], "command": "add_line_index_with_popup" }
+	{ "keys": ["super+ctrl+x"], "command": "add_row_index" },
+    { "keys": ["super+ctrl+shift+x"], "command": "add_row_index_with_popup" }
 ]

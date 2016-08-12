@@ -12,23 +12,23 @@
                 "children":
                 [
                     {
-                        "caption": "AddLineIndex",
+                        "caption": "AddRowIndex",
                         "children":
                         [
                             {
                                 "command": "open_file", 
-                                "args": {"file": "${packages}/AddLineIndex/AddLineIndex.sublime-settings"},
+                                "args": {"file": "${packages}/AddRowIndex/AddRowIndex.sublime-settings"},
                                 "caption": "Settings – Default"
                             },
                             {
                                 "command": "open_file", 
-                                "args": {"file": "${packages}/User/AddLineIndex.sublime-settings"},
+                                "args": {"file": "${packages}/User/AddRowIndex.sublime-settings"},
                                 "caption": "Settings – User"
                             },
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/AddLineIndex/Default (Windows).sublime-keymap",
+                                    "file": "${packages}/AddRowIndex/Default (Windows).sublime-keymap",
                                     "platform": "Windows"
                                 },
                                 "caption": "Key Bindings – Default"
@@ -36,7 +36,7 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/AddLineIndex/Default (OSX).sublime-keymap",
+                                    "file": "${packages}/AddRowIndex/Default (OSX).sublime-keymap",
                                     "platform": "OSX"
                                 },
                                 "caption": "Key Bindings – Default"
@@ -44,7 +44,7 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/AddLineIndex/Default (Linux).sublime-keymap",
+                                    "file": "${packages}/AddRowIndex/Default (Linux).sublime-keymap",
                                     "platform": "Linux"
                                 },
                                 "caption": "Key Bindings – Default"
