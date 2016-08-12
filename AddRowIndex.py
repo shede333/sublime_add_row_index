@@ -20,25 +20,60 @@ def get_selected_rows(view=None):
     return row_num_arr
 
 
-def insert_digit_index(view=None, edit=None, row_num_list=[], first_number=0, index_step=1):
+def get_plugin_setting():
+    return sublime.load_settings("AddRowIndex.sublime-settings")
+
+
+def insert_digit_index(view=None, edit=None, is_skip_first_number=False, row_num_list=[], first_number=0, index_step=1):
     # start insert number in beginning of line
     view = g_view if view == None else view
     edit = g_edit if edit == None else edit
-    for tmp_row in row_num_list:
-        view.insert(edit, view.text_point(tmp_row, 0), str(first_number))
+    new_regions = []
+    if is_skip_first_number:
+        # skip first row
+        first_line = view.substr(view.line(view.text_point(row_num_list[0], 0)))
+        result = re.search("\d+", first_line)
+        if result:
+            text_point = view.text_point(row_num_list[0], result.end())
+            new_regions.append(sublime.Region(text_point, text_point))
+        row_num_list = row_num_list[1:]
         first_number += index_step
+        
+    for tmp_row in row_num_list:
+        number_str = str(first_number)
+        view.insert(edit, view.text_point(tmp_row, 0), number_str)
+        text_point = view.text_point(tmp_row, len(number_str))
+        new_regions.append(sublime.Region(text_point, text_point))
+        first_number += index_step
+    # change cursor location
+    settings = get_plugin_setting()
+    if settings.get("change_cursor_location_after_insert_index", True):
+        regions = view.sel()
+        regions.clear()
+        regions.add_all(new_regions)
+
 
 
 def insert_letter_index(view=None, edit=None, row_num_list=[], first_letter="a", max_letter="z"):
     # start insert letter in beginning of line
     view = g_view if view == None else view
     edit = g_edit if edit == None else edit
+    new_regions = []
+    inserted_letter = first_letter
     for tmp_row in row_num_list:
-        view.insert(edit, view.text_point(tmp_row, 0), first_letter)
-        if first_letter < max_letter:
-            first_letter = chr(ord(first_letter) + 1)
+        view.insert(edit, view.text_point(tmp_row, 0), inserted_letter)
+        text_point = view.text_point(tmp_row, len(inserted_letter))
+        new_regions.append(sublime.Region(text_point, text_point))
+        if inserted_letter < max_letter:
+            inserted_letter = chr(ord(inserted_letter) + 1)
         else:
             break
+    # change cursor location
+    settings = get_plugin_setting()
+    if settings.get("change_cursor_location_after_insert_index", True):
+        regions = view.sel()
+        regions.clear()
+        regions.add_all(new_regions)
 
 
 def handle_user_popup_select(selected_index):
@@ -49,7 +84,7 @@ def handle_user_popup_select(selected_index):
     elif selected_index <= 1:
         # insert digit
         first_number = selected_index
-        settings = sublime.load_settings("AddRowIndex.sublime-settings")
+        settings = get_plugin_setting()
         index_step = settings.get("add_row_index_step", 1)
         insert_digit_index(row_num_list=get_selected_rows(), first_number=first_number, index_step=index_step)
     elif selected_index == 2:
@@ -62,35 +97,37 @@ def handle_user_popup_select(selected_index):
     
 class AddRowIndex(sublime_plugin.TextCommand):
     def is_enabled(self):
-        line_num = len(get_selected_rows(self.view))
-        if line_num <= 1:
-            print("Notice:Only when selected line num >= 2, AddRowIndex is enable!")
-        return line_num > 1
+        row_num = len(get_selected_rows(self.view))
+        if row_num <= 1:
+            print("Notice:Only when selected row num >= 2, AddRowIndex is enable!")
+        return row_num > 1
 
 
 class AddRowIndexCommand(AddRowIndex):
     def run(self, edit, first_number=-1):
         view = self.view
         # get local setting
-        settings = sublime.load_settings("AddRowIndex.sublime-settings")
-        index_start_num = settings.get("add_row_index_start_num", 0)
+        settings = get_plugin_setting()
+        index_start_num = settings.get("add_row_index_start_number", 0)
         index_step = settings.get("add_row_index_step", 1)
-        index_is_check_first_num = settings.get("add_row_index_is_check_first_num", True)
+        index_is_check_first_num = settings.get("add_row_index_is_check_first_number", True)
         # get all selected row
         row_num_arr = get_selected_rows(view)
-        # check setting: is need check first line number params
+        # check setting: is need parse params of first number
+        is_skip_first_number = False
         if first_number == -1:
             # if command has params, not user setting params of first_number
             first_number = index_start_num
-        if index_is_check_first_num:
-            first_line = view.substr(view.line(view.text_point(row_num_arr[0], 0)))
-            first_line = first_line.strip()
-            result = re.search("^\d+", first_line)
-            # if first line has numbers, first_number use this number
-            if result:
-                first_number = int(result.group(0)) + index_step
-                row_num_arr.pop(0)
-        insert_digit_index(view, edit, row_num_arr, first_number, index_step)
+            if index_is_check_first_num:
+                # search digit in beginning of first line
+                first_line = view.substr(view.line(view.text_point(row_num_arr[0], 0)))
+                first_line = first_line.strip()
+                result = re.search("^\d+", first_line)
+                # if first line has numbers, first_number use this number
+                if result:
+                    is_skip_first_number = True
+                    first_number = int(result.group(0))
+        insert_digit_index(view, edit, is_skip_first_number, row_num_arr, first_number, index_step)
 
 
 class AddRowIndexWithLetterCommand(AddRowIndex):
