@@ -6,12 +6,12 @@
     {
         "caption": "AddRowIndex: add row index, 0,1,2,3...",
         "command": "add_row_index",
-        "args": {"first_number": 0}
+        "args": {"first_number": 0, "use_plugin_setting": false}
     },
     {
         "caption": "AddRowIndex: add row index, 1,2,3,4...",
         "command": "add_row_index",
-        "args": {"first_number": 1}
+        "args": {"first_number": 1, "use_plugin_setting": false}
     },
     {
         "caption": "AddRowIndex: add row index, a,b,c,d...",

@@ -24,12 +24,12 @@ def get_plugin_setting():
     return sublime.load_settings("AddRowIndex.sublime-settings")
 
 
-def insert_digit_index(view=None, edit=None, is_skip_first_number=False, row_num_list=[], first_number=0, index_step=1):
+def insert_digit_index(view=None, edit=None, is_skip_first_row=False, row_num_list=[], first_number=0, index_step=1):
     # start insert number in beginning of line
     view = g_view if view == None else view
     edit = g_edit if edit == None else edit
     new_regions = []
-    if is_skip_first_number:
+    if is_skip_first_row:
         # skip first row
         first_line = view.substr(view.line(view.text_point(row_num_list[0], 0)))
         result = re.search("\d+", first_line)
@@ -84,8 +84,9 @@ def handle_user_popup_select(selected_index):
     elif selected_index <= 1:
         # insert digit
         first_number = selected_index
-        settings = get_plugin_setting()
-        index_step = settings.get("add_row_index_step", 1)
+        # settings = get_plugin_setting()
+        # index_step = settings.get("add_digit_index_step", 1)
+        index_step = 1
         insert_digit_index(row_num_list=get_selected_rows(), first_number=first_number, index_step=index_step)
     elif selected_index == 2:
         # inset lower letter
@@ -104,30 +105,29 @@ class AddRowIndex(sublime_plugin.TextCommand):
 
 
 class AddRowIndexCommand(AddRowIndex):
-    def run(self, edit, first_number=-1):
+    def run(self, edit, first_number=0, use_plugin_setting=True):
         view = self.view
-        # get local setting
-        settings = get_plugin_setting()
-        index_start_num = settings.get("add_row_index_start_number", 0)
-        index_step = settings.get("add_row_index_step", 1)
-        index_is_check_first_num = settings.get("add_row_index_is_check_first_number", True)
         # get all selected row
         row_num_arr = get_selected_rows(view)
-        # check setting: is need parse params of first number
-        is_skip_first_number = False
-        if first_number == -1:
-            # if command has params, not user setting params of first_number
-            first_number = index_start_num
+        is_skip_first_row = False
+        index_step = 1
+        if use_plugin_setting:
+            # use plugin setting
+            settings = get_plugin_setting()
+            first_number = settings.get("add_digit_index_start_number", 0)
+            index_step = settings.get("add_digit_index_step", 1)
+            index_is_check_first_num = settings.get("add_digit_index_is_parse_first_row", True)
+
             if index_is_check_first_num:
                 # search digit in beginning of first line
                 first_line = view.substr(view.line(view.text_point(row_num_arr[0], 0)))
                 first_line = first_line.strip()
                 result = re.search("^\d+", first_line)
-                # if first line has numbers, first_number use this number
+                # if first line has digit, first_number use this digit
                 if result:
-                    is_skip_first_number = True
+                    is_skip_first_row = True
                     first_number = int(result.group(0))
-        insert_digit_index(view, edit, is_skip_first_number, row_num_arr, first_number, index_step)
+        insert_digit_index(view, edit, is_skip_first_row, row_num_arr, first_number, index_step)
 
 
 class AddRowIndexWithLetterCommand(AddRowIndex):
