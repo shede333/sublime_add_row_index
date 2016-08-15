@@ -28,7 +28,7 @@ shortcut key **custom** setting：**sublime text** -> **Preferences** -> **Packa
 
 example image：
 
-![image](gif_insert_char_after_cursor_and_esc)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_insert_char_after_cursor_and_esc.gif)
 
 ####  Shortcut key 2：
 
@@ -39,7 +39,7 @@ example image：
 show popup menu, then use **<kbd>arrow-key(up/down)</kbd>** to select，  
 example image：
 
-![image](gif_kbd_show_select)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_kbd_show_select.gif)
 
 ### Method 2：use Command Palette
 
@@ -47,7 +47,7 @@ example image：
 
 input `add row index` in `Command Palette` , rather `enter`
 
-![image](gif_show_command_palette)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_show_command_palette.gif)
 
 1. **command-1** `AddRowIndex: add row index` : According to `Plugin Params Of Setting` ,insert digit in  the beginning of every row
 2. **command-2** `AddRowIndex: add row index, 0,1,2,3...` : insert：0,1,2,3...
@@ -173,7 +173,7 @@ insert the cursor at the back of the index number
 对每行插入数字后，在数字后面也插入光标，以便用户继续操作：插入其它符号，  
 如果不需要再插入字符，那么使用`ESC`就可以取消光标
 
-![image](gif_insert_char_after_cursor_and_esc)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_insert_char_after_cursor_and_esc.gif)
 
 ---
 ## Notice：
@@ -181,11 +181,11 @@ insert the cursor at the back of the index number
 This Plugin (include `the shortcut key` and `command palette`) is valid when the number of selected row > 1.
 
 
-![image](gif_select_much_row)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_select_much_row.gif)
 
 In addition, multiple rows with the cursor, this plugin is also valid :
 
-![image](gif_select_much_cursor)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_select_much_cursor.gif)
 
 
 
@@ -227,7 +227,7 @@ sublime text 3 插件，给选中的每一行的行首增加数字索引，而�
 
 如下图：
 
-![image](gif_insert_char_after_cursor_and_esc)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_insert_char_after_cursor_and_esc.gif)
 
 #### 快捷键2：
 
@@ -237,7 +237,7 @@ sublime text 3 插件，给选中的每一行的行首增加数字索引，而�
 
 然后使用 <kbd>上、下方向键</kbd> 选择，如下图
 
-![image](gif_kbd_show_select)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_kbd_show_select.gif)
 
 ### 方法2：使用 Command Palette
 
@@ -245,7 +245,7 @@ menu -> Tool -> Command Palette，(或者使用快捷键打开Command Palette)
 
 在弹出框 输入 __“add row index”__ ，回车即可
 
-![image](gif_show_command_palette)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_show_command_palette.gif)
 
 1. **command-1** `AddRowIndex: add row index` : 根据插件的设置，在每行的行首插入相应的数字索引
 2. **command-2** `AddRowIndex: add row index, 0,1,2,3...` : 插入：0,1,2,3...
@@ -369,7 +369,7 @@ menu -> Tool -> Command Palette，(或者使用快捷键打开Command Palette)
 对每行插入数字后，在数字后面也插入光标，以便用户继续操作：插入其它符号，    
 如果不需要再插入字符，那么使用`ESC`就可以取消光标
 
-![image](gif_insert_char_after_cursor_and_esc)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_insert_char_after_cursor_and_esc.gif)
 
 ---
 ## 注意：
@@ -379,11 +379,11 @@ menu -> Tool -> Command Palette，(或者使用快捷键打开Command Palette)
 
 只要改行有选中的文本，那么改行就算是被选中，没必要把改行的文字全部选中，如下图：
 
-![image](gif_select_much_row)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_select_much_row.gif)
 
 另外，光标多选也算，即只要本行有光标插入也可，如下图：
 
-![image](gif_select_much_cursor)
+![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_select_much_cursor.gif)
 
 
 
