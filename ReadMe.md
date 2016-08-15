@@ -4,7 +4,7 @@
 
 # English
 
-sublime text 3 plugin，add difit and letter index in the beginning of every row
+sublime text 3 plugin，add digit and letter index in the beginning of every row
 
 **notice：**
 
