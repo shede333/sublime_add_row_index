@@ -170,8 +170,6 @@ ignore didit `2` in beginning of the firt row, `add_digit_index_start_number` is
 default value: true
     
 insert the cursor at the back of the index number
-对每行插入数字后，在数字后面也插入光标，以便用户继续操作：插入其它符号，  
-如果不需要再插入字符，那么使用`ESC`就可以取消光标
 
 ![image](https://raw.githubusercontent.com/shede333/image-link/master/addRowIndex/gif_insert_char_after_cursor_and_esc.gif)
 
