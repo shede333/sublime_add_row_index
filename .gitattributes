@@ -1,0 +1,4 @@
+*.sublime-settings linguist-language=Python
+*.sublime-keymap linguist-language=Python
+*.sublime-commands linguist-language=Python
+*.sublime-menu linguist-language=Python
